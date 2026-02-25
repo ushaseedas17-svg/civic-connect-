@@ -19,26 +19,7 @@ civic-connect/
 └── README.md        ← This file
 ```
 
----
-
-## 🚀 Step-by-Step: Run in VS Code
-
-### Step 1 — Open in VS Code
-Open the `civic-connect/` folder in VS Code.
-
-### Step 2 — Install Live Server (one-time)
-1. Press `Ctrl+Shift+X` (Extensions)
-2. Search **"Live Server"** by Ritwick Dey
-3. Click **Install**
-
-### Step 3 — Launch the App
-1. Right-click `index.html` in the file explorer
-2. Click **"Open with Live Server"**
-3. Browser opens at `http://127.0.0.1:5500/index.html`
-
-> 💡 **No build tools or Node.js required** — pure HTML/CSS/JS!
-
----
+-
 
 ## 🗺 Page-by-Page Guide
 
