@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Report Issue – Civic Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-logo">⬡ CivicConnect</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="report.html" class="active">Report Issue</a></li>
+      <li><a href="tracker.html">Track</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+    <a href="report.html" class="btn-primary">Report Issue</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>Report a Civic Issue</h1>
+    <p>Upload a photo, pin your location, and we'll handle the rest.</p>
+  </div>
+
+  <div class="report-container">
+    <!-- LEFT: FORM -->
+    <div class="report-form-wrap">
+      <form class="report-form" id="reportForm">
+
+        <!-- STEP 1: PHOTO UPLOAD -->
+        <div class="form-section">
+          <div class="form-step-label"><span class="step-badge">1</span> Upload Photo</div>
+          <div class="upload-zone" id="uploadZone">
+            <div class="upload-inner" id="uploadInner">
+              <span class="upload-icon">📷</span>
+              <p>Drag & drop or <label for="fileInput" class="upload-link">browse photo</label></p>
+              <p class="upload-hint">JPG, PNG · Max 10MB</p>
+              <input type="file" id="fileInput" accept="image/*" hidden/>
+            </div>
+            <img id="previewImg" class="preview-img hidden" alt="Preview"/>
+            <button type="button" class="remove-img hidden" id="removeImg">✕ Remove</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: CATEGORY -->
+        <div class="form-section">
+          <div class="form-step-label"><span class="step-badge">2</span> Issue Category</div>
+          <div class="cat-grid">
+            <div class="cat-option" data-cat="road">🚧<span>Broken Road</span></div>
+            <div class="cat-option" data-cat="garbage">🗑<span>Garbage</span></div>
+            <div class="cat-option" data-cat="water">💧<span>Water Leakage</span></div>
+            <div class="cat-option" data-cat="electric">⚡<span>Electricity</span></div>
+            <div class="cat-option" data-cat="streetlight">💡<span>Street Light</span></div>
+            <div class="cat-option" data-cat="other">📌<span>Other</span></div>
+          </div>
+          <input type="hidden" id="selectedCat" name="category"/>
+        </div>
+
+        <!-- STEP 3: LOCATION -->
+        <div class="form-section">
+          <div class="form-step-label"><span class="step-badge">3</span> Location</div>
+          <div class="location-field">
+            <input type="text" id="locationInput" placeholder="Enter area, street, landmark..." class="form-input"/>
+            <button type="button" class="btn-locate" id="locateBtn">📍 Use My Location</button>
+          </div>
+          <div class="map-placeholder" id="mapBox">
+            <span class="map-pin" id="mapPin">📍</span>
+            <span class="map-label">Click map to drop pin</span>
+            <div class="map-grid-lines"></div>
+          </div>
+        </div>
+
+        <!-- STEP 4: DESCRIPTION -->
+        <div class="form-section">
+          <div class="form-step-label"><span class="step-badge">4</span> Description</div>
+          <textarea class="form-input form-textarea" placeholder="Briefly describe the issue – severity, how long it's been there, any hazard..." id="descInput"></textarea>
+        </div>
+
+        <!-- STEP 5: CONTACT -->
+        <div class="form-section">
+          <div class="form-step-label"><span class="step-badge">5</span> Your Contact (optional)</div>
+          <div class="two-col">
+            <input type="text" class="form-input" placeholder="Your Name" id="nameInput"/>
+            <input type="tel" class="form-input" placeholder="Phone / Email" id="contactInput"/>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary btn-lg btn-submit" id="submitBtn">Submit Report →</button>
+      </form>
+    </div>
+
+    <!-- RIGHT: LIVE PREVIEW -->
+    <div class="report-preview">
+      <div class="preview-card">
+        <div class="preview-header">Live Preview</div>
+        <div class="preview-photo-box" id="prevPhotoBox">
+          <span>📷 Photo preview</span>
+        </div>
+        <div class="preview-details">
+          <div class="prev-row"><span class="prev-label">Category</span><span id="prevCat" class="prev-val">—</span></div>
+          <div class="prev-row"><span class="prev-label">Location</span><span id="prevLoc" class="prev-val">—</span></div>
+          <div class="prev-row"><span class="prev-label">Status</span><span class="prev-val status-badge-new">New</span></div>
+          <div class="prev-row"><span class="prev-label">Complaint ID</span><span class="prev-val" id="prevId">#CC-????</span></div>
+        </div>
+      </div>
+
+      <div class="auto-cat-box" id="autoCatBox">
+        <div class="auto-cat-label">🤖 Auto-Categorization</div>
+        <p>Select a category or upload a photo to see auto-routing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay hidden" id="successModal">
+    <div class="modal">
+      <div class="modal-icon">🎉</div>
+      <h2>Complaint Submitted!</h2>
+      <p>Your complaint ID is <strong id="modalId">#CC-2847</strong>. Track its status anytime.</p>
+      <div class="modal-actions">
+        <a href="tracker.html" class="btn-primary">Track Status</a>
+        <button class="btn-ghost" id="closeModal">Report Another</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="report.js"></script>
+</body>
+</html>

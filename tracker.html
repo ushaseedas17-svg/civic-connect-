@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Complaint – Civic Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-logo">⬡ CivicConnect</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="report.html">Report Issue</a></li>
+      <li><a href="tracker.html" class="active">Track</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+    <a href="report.html" class="btn-primary">Report Issue</a>
+  </nav>
+
+  <div class="page-header">
+    <h1>Track Your Complaint</h1>
+    <p>Enter your Complaint ID to get real-time status updates.</p>
+  </div>
+
+  <div class="tracker-container">
+    <!-- SEARCH BAR -->
+    <div class="track-search-wrap">
+      <input type="text" id="trackInput" class="track-input" placeholder="Enter Complaint ID (e.g. CC-2847)"/>
+      <button class="btn-primary" id="trackBtn">Track →</button>
+    </div>
+    <div class="track-demo-hint">Try: <span class="demo-id" data-id="CC-2847">CC-2847</span>, <span class="demo-id" data-id="CC-1031">CC-1031</span>, <span class="demo-id" data-id="CC-0094">CC-0094</span></div>
+
+    <!-- RESULT -->
+    <div id="trackResult" class="track-result hidden">
+      <div class="result-header">
+        <div>
+          <div class="result-id" id="resId">#CC-2847</div>
+          <div class="result-title" id="resTitle">Broken Road – NH-12 Junction</div>
+        </div>
+        <div class="result-status-badge" id="resBadge">In Progress</div>
+      </div>
+
+      <div class="result-meta">
+        <div class="meta-item"><span>📍</span><span id="resLoc">Salt Lake, Sector V, Kolkata</span></div>
+        <div class="meta-item"><span>🗂</span><span id="resCat">Road Damage</span></div>
+        <div class="meta-item"><span>📅</span><span id="resDate">Reported: Feb 20, 2026</span></div>
+        <div class="meta-item"><span>🏢</span><span id="resDept">PWD – Roads Dept.</span></div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline-section">
+        <h3 class="timeline-title">Progress Timeline</h3>
+        <div class="timeline" id="timeline">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- PROGRESS BAR -->
+      <div class="progress-section">
+        <div class="progress-label-row">
+          <span>Overall Progress</span>
+          <span id="progressPct">60%</span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL COMPLAINTS LIST -->
+    <div class="all-complaints">
+      <h2 class="section-title" style="font-size:1.4rem; margin-bottom:1.5rem;">Recent Complaints in Your Area</h2>
+      <div class="complaints-list" id="complaintsList"></div>
+    </div>
+  </div>
+
+  <script src="tracker.js"></script>
+</body>
+</html>

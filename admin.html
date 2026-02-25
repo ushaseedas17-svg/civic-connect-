@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard – Civic Connect</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body class="admin-body">
+
+  <nav class="nav admin-nav">
+    <div class="nav-logo">⬡ CivicConnect <span class="admin-tag">ADMIN</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="report.html">Report Issue</a></li>
+      <li><a href="tracker.html">Track</a></li>
+      <li><a href="admin.html" class="active">Admin</a></li>
+    </ul>
+    <div class="admin-user">🔐 Authority Login</div>
+  </nav>
+
+  <div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Departments</div>
+        <ul class="sidebar-menu">
+          <li class="sidebar-item active" data-filter="all">📋 All Complaints</li>
+          <li class="sidebar-item" data-filter="road">🚧 Road & PWD</li>
+          <li class="sidebar-item" data-filter="garbage">🗑 Sanitation</li>
+          <li class="sidebar-item" data-filter="water">💧 Water Supply</li>
+          <li class="sidebar-item" data-filter="electric">⚡ Electricity</li>
+          <li class="sidebar-item" data-filter="streetlight">💡 Street Lights</li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Status Filter</div>
+        <ul class="sidebar-menu">
+          <li class="sidebar-item" data-status="all">All Status</li>
+          <li class="sidebar-item" data-status="new">🔴 New</li>
+          <li class="sidebar-item" data-status="inprogress">🟡 In Progress</li>
+          <li class="sidebar-item" data-status="resolved">🟢 Resolved</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+      <!-- KPI CARDS -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">📋</div>
+          <div class="kpi-val" id="kpiTotal">0</div>
+          <div class="kpi-label">Total Complaints</div>
+        </div>
+        <div class="kpi-card kpi-new">
+          <div class="kpi-icon">🔴</div>
+          <div class="kpi-val" id="kpiNew">0</div>
+          <div class="kpi-label">New</div>
+        </div>
+        <div class="kpi-card kpi-progress">
+          <div class="kpi-icon">🟡</div>
+          <div class="kpi-val" id="kpiProgress">0</div>
+          <div class="kpi-label">In Progress</div>
+        </div>
+        <div class="kpi-card kpi-resolved">
+          <div class="kpi-icon">🟢</div>
+          <div class="kpi-val" id="kpiResolved">0</div>
+          <div class="kpi-label">Resolved</div>
+        </div>
+      </div>
+
+      <!-- TABLE HEADER -->
+      <div class="admin-table-header">
+        <h2 class="admin-section-title">Complaint Queue</h2>
+        <input type="text" class="admin-search" placeholder="Search complaints..." id="adminSearch"/>
+      </div>
+
+      <!-- TABLE -->
+      <div class="admin-table-wrap">
+        <table class="admin-table" id="adminTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Issue</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CHART SECTION -->
+      <div class="admin-charts">
+        <div class="chart-card">
+          <h3>Issues by Category</h3>
+          <div class="bar-chart" id="barChart"></div>
+        </div>
+        <div class="chart-card">
+          <h3>Resolution Rate</h3>
+          <div class="donut-wrap">
+            <svg class="donut" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#1a1a2e" stroke-width="16"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#00ff88" stroke-width="16"
+                stroke-dasharray="188 126" stroke-dashoffset="25" stroke-linecap="round"/>
+            </svg>
+            <div class="donut-center">94%<br/><span>Resolved</span></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- STATUS MODAL -->
+  <div class="modal-overlay hidden" id="statusModal">
+    <div class="modal">
+      <h2>Update Status</h2>
+      <p>Complaint <strong id="modalComplaintId"></strong></p>
+      <div class="status-options">
+        <button class="status-btn" data-status="new">🔴 New</button>
+        <button class="status-btn" data-status="inprogress">🟡 In Progress</button>
+        <button class="status-btn" data-status="resolved">🟢 Resolved</button>
+      </div>
+      <button class="btn-ghost" id="closeStatusModal" style="margin-top:1rem; width:100%;">Cancel</button>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
